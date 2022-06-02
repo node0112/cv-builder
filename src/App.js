@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import React, { Component } from 'react';
 import {Header,SubHeader} from './components/header';
 import Form from './components/form';
+import UserPreview from './userPreview';
+import PreviewDefault from './previewDefault';
 
 
 
@@ -19,14 +21,22 @@ class App extends Component{
       course: undefined,
       year: undefined,
       //practical experience input
+      practicalExpereince: "No Previous Practical Experience",
       company: undefined,
       position: undefined,
       experienceYears: undefined,
       jobTasks: undefined,
       //----------miscellaneous
+      accentColor: "#3476b0",
+      cvTextColor: "#FFE5B4",
       unfilled: "label hide",
       submit: false, //change to true if clicked and false if incomplete when clicked
-      formSubmitted: false
+      formSubmitted: false,
+      makeMineSelected: 'form-container hide', //remove to hide when done
+      previewSelected: 'preview-container',
+      preview: "menu-button preview label selected",
+      makeMine: "menu-button make-yours label",
+      previewCV: <PreviewDefault textColor={this.cvTextColor} accentColor={this.accentColor}/>
     }
     this.changeGender = this.changeGender.bind(this)
     this.nameChange = this.nameChange.bind(this)
@@ -42,7 +52,10 @@ class App extends Component{
     this.changeJobTasks = this.changeJobTasks.bind(this)
     this.checkInput = this.checkInput.bind(this)
     this.submitClick = this.submitClick.bind(this)
-    this.submitForm = this.submitForm.bind(this)
+    this.previewClick = this.previewClick.bind(this)
+    this.makeMineClick = this.makeMineClick.bind(this)
+    this.changeColor = this.changeColor.bind(this)
+    this.changeTextColor = this.changeTextColor.bind(this)
   }
   //input functions here------>
   nameChange(event){
@@ -109,46 +122,85 @@ class App extends Component{
   }
  //----------------------------
   checkInput(){
-    return false
+    const item=this.state
+    if(item.name==undefined || item.email==undefined || item.socialProfile==undefined || item.schoolName==undefined || item.course==undefined || item.year==undefined){
+      return false
+    }
+    else{
+      if(this.state.company != undefined){
+        this.setState({
+          practicalExpereince: "Here Are My Details About My Experience In The Field"
+        })
+      }
+      return true
+    }
   }
   submitClick(){
-    if(this.state.submit==false){
-      this.setState({
-        submit: true
-      })
-      console.log("hi")
+    if(this.state.submit == false){
       if(this.checkInput() == false){
         this.setState({
           unfilled:  "label warning"
         })
-        console.log("hi")
+        window.scrollTo(0, 0)
+        this.previewClick()
       }
-        
-    }
-    if(this.state.submit == true && this.state.formSubmitted== false){
-      if(this.checkInput == true){
-      this.setState({
-        unfilled:  "label warning"
-      })}
+      else if(this.checkInput() == true){
+        this.setState({
+          formSubmitted: true
+        })
+        this.previewClick()
+      }
     }
   }
-
-  submitForm(){
-    //make formsubit true and switch over to preview
+  changeColor(event){
+    this.setState({
+      accentColor: event.target.value
+    })
+  }
+  changeTextColor(event){
+    this.setState({
+      cvTextColor: event.target.value
+    })
+  }
+  previewClick(){
+    if(this.checkInput==true && this.state.formSubmitted == true){
+      this.setState({
+        previewCV: <UserPreview states={this.props} />
+      })
+    }
+    else{
+      this.setState({
+        makeMineSelected: 'form-container hide',
+        previewSelected: 'preview-container',
+        preview: "menu-button preview label selected",
+        makeMine: "menu-button make-yours label ",
+        previewCV: <PreviewDefault textColor={this.state.cvTextColor} accentColor={this.state.accentColor}/>
+      })
+    }
+  }
+  makeMineClick(){
+    this.setState({
+      makeMineSelected: 'form-container',
+      previewSelected: 'preview-container hide',
+      preview: "menu-button preview label ",
+      makeMine: "menu-button make-yours label selected"
+    })
   }
   render(){
     return(
       <div className='container'>
         <Header headerTitle="Make My CV"/>
-        <SubHeader />
-        <div className='form-container'>
-          <Form nameChange={this.nameChange} changeGender={this.changeGender} functions={this} filled={this.state.unfilled}/>
+        <SubHeader states={this.state} previewClick={this.previewClick} makeMineClick={this.makeMineClick} preview={this.state.preview} makeMine={this.state.makeMine}/>
+        <div className={this.state.previewSelected}>
+          {this.state.previewCV}
+        </div>
+        <div className={this.state.makeMineSelected}>
+          <Form accentColor={this.state.accentColor} textColor={this.state.cvTextColor} functions={this} filled={this.state.unfilled}/>
         </div>
       </div>
     )
   }
 }
-
 
 
 export default App;

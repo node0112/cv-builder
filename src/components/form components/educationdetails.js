@@ -27,7 +27,7 @@ class EducationDetails extends Component{
                 {this.state.renderSection ? 
                     <div className="input-container">
                     <InputElement logo="school" labelClass="label form-text" labelText="School* :" inputClass="school" inputType="text" inputSize="14" function={this.props.changeSchoolName}/>
-                    <InputElement logo="history_edu" labelClass="label form-text" labelText="Course Chosen :" inputClass="telephone" inputType="tel" inputSize="13" function={this.props.changeCourse} />
+                    <InputElement logo="history_edu" labelClass="label form-text" labelText="Course Chosen* :" inputClass="telephone" inputType="tel" inputSize="13" function={this.props.changeCourse} />
                     </div>
                  : null 
                  }

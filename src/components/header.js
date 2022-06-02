@@ -27,9 +27,9 @@ class SubHeader extends Component{
     render(){
         return(
             <div className="sub-header">
-                <div className="menu-button preview label">Preview</div>
+                <div className={this.props.preview} onClick={this.props.previewClick}>Preview</div>
                 <div className="line">|</div>
-                <div className="menu-button Make Yours label selected">Make Yours</div>
+                <div className={this.props.makeMine} onClick={this.props.makeMineClick}>Make Yours</div>
             </div>
         )
     }
