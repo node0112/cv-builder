@@ -17,7 +17,7 @@ class App extends Component{
       telephone: undefined,
       socialProfile: undefined,
       //education input
-      schoolName: undefined,
+      institution: undefined,
       course: undefined,
       year: undefined,
       //practical experience input
@@ -28,7 +28,7 @@ class App extends Component{
       jobTasks: undefined,
       //----------miscellaneous
       accentColor: "#3476b0",
-      cvTextColor: "#FFE5B4",
+      cvTextColor: "#fec700",
       unfilled: "label hide",
       submit: false, //change to true if clicked and false if incomplete when clicked
       formSubmitted: false,
@@ -43,7 +43,7 @@ class App extends Component{
     this.changeEmail = this.changeEmail.bind(this)
     this.changeTelephone = this.changeTelephone.bind(this)
     this.changeSocialProfile = this.changeSocialProfile.bind(this)
-    this.changeSchoolName = this.changeSchoolName.bind(this)
+    this.changeinstitution = this.changeinstitution.bind(this)
     this.changeCourse = this.changeCourse.bind(this)
     this.changeYear = this.changeYear.bind(this)
     this.changeCompany = this.changeCompany.bind(this)
@@ -84,9 +84,9 @@ class App extends Component{
     })
   }
   //ed input
-  changeSchoolName(event){
+  changeinstitution(event){
     this.setState({
-      schoolName: event.target.value
+      institution: event.target.value
     })
   }
   changeCourse(event){
@@ -123,7 +123,8 @@ class App extends Component{
  //----------------------------
   checkInput(){
     const item=this.state
-    if(item.name==undefined || item.email==undefined || item.socialProfile==undefined || item.schoolName==undefined || item.course==undefined || item.year==undefined){
+    if(item.name==undefined || item.gender || item.email==undefined || item.socialProfile==undefined || item.institution==undefined || item.course==undefined || item.year==undefined){
+      console.log(item.name,item.email,item.socialProfile,item.institution,item.course,item.year,item.gender)
       return false
     }
     else{
@@ -165,7 +166,7 @@ class App extends Component{
   previewClick(){
     if(this.checkInput==true && this.state.formSubmitted == true){
       this.setState({
-        previewCV: <UserPreview states={this.props} />
+        previewCV: <UserPreview states={this.state} />
       })
     }
     else{

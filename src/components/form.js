@@ -12,12 +12,7 @@ class Form extends Component{
             <div className="form">
                 <div className="form-content">
                     <PersonalDetails nameChange={functions.nameChange} changeGender={functions.changeGender} changeEmail={functions.changeEmail} changeTelephone={functions.changeTelephone} filled={this.props.filled}/>
-                    <EducationDetails changeSchoolName={functions.changeSchoolName} changeCourse={functions.changeCourse} changeYear={functions.changeYear} experienceFunctions={this.props.functions} filled={this.props.filled} submitClick={functions.submitClick}/>
-                    <div className="form-options">
-                        <div className="section-header label">Form Options</div>
-                        <div className="label color-picker" style={{fontSize:"20px"}}>CV Accent Color: <input type={"color"} value={this.props.accentColor} onChange={event => functions.changeColor(event)}/></div>
-                        <div className="label color-picker" style={{fontSize:"20px"}}>CV Text Color: <input type={"color"} value={this.props.textColor} onChange={event => functions.changeTextColor(event)}/></div>
-                    </div>
+                    <EducationDetails changeSchoolName={functions.changeSchoolName} changeCourse={functions.changeCourse} changeYear={functions.changeYear} experienceFunctions={this.props.functions} filled={this.props.filled} submitClick={functions.submitClick} accentColor={this.props.accentColor} textColor={this.props.textColor} changeTextColor={functions.changeTextColor} changeColor={functions.changeColor}/>
                     <div className="form-footer">
                         <div className="footer-text label">Fields Marked With * Are Required To Be Filled </div>
                     </div>

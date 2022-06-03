@@ -35,6 +35,8 @@ body{
   height: 8%;
   background-color: #131313;
   gap: 5%;
+  position: sticky; top: 0;
+  width: 100%
 }
 .menu-button{
   transition: all 0.5s;
@@ -78,6 +80,7 @@ body{
 }
 .preview-text{
   font-size: 32px;
+  margin-top: 15%;
 }
 .form{
   flex-direction: column;
@@ -157,9 +160,12 @@ i{
   color: tomato;
   font-size: 16px;
 }
-.email,.school,.company{
+.email,.institution,.company{
   margin-left: 50px;
   margin-right: 40px;
+}
+.institution{
+
 }
 .section-header{
   display: flex;
@@ -198,6 +204,7 @@ i{
 /*preview section styling */
 .preview-content{
   width: 100%;
+  display: flex;
 }
 .sub-text{
   font-size: 16px;
@@ -208,6 +215,23 @@ i{
   padding: 5%;
   display: flex;
   flex-direction: column;
+}
+.right-content{
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 200px;
+  padding: 5%;
+  padding-top: 15%;
+}
+.header-text{
+  margin-bottom: 5%;
+}
+.label-text{
+  font-size: 26px;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 
@@ -241,6 +265,7 @@ li{
 }
 a{
   cursor: pointer;
+  text-decoration: none;
 }
 .hide{
   display: none;

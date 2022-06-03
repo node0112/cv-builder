@@ -13,8 +13,8 @@ class PersonalDetails extends Component{
                     <InputElement logo="account_circle" labelClass="label form-text" labelText="Full Name* :" inputClass="name" inputType="text" inputSize="13" function={this.props.nameChange} />
                     <div className="gender-selector label" onChange={event => this.props.changeGender(event,'gender')}>
                     <div className="label" style={{marginLeft: "5%"}}>Pronoun*: </div>
-                    <input type="radio" value="Male" name="gender" /> Mr.
-                    <input type="radio" value="Female" name="gender" /> Mrs.
+                    <input type="radio" value="Mr." name="gender" /> Mr.
+                    <input type="radio" value="Mrs." name="gender" /> Mrs.
                     <input type="radio" value="Other" name="gender" /> Other
                     </div>
                 </div>
