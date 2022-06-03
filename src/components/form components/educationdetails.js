@@ -26,7 +26,7 @@ class EducationDetails extends Component{
                 <div className="section-header-form label">2. Education Details* <i className={this.state.clicked} style={{marginLeft: "2%"}} onClick={this.addSection}>add_circle</i><div className={this.props.filled}>  Please Fill All The Required Fields!</div></div>
                 {this.state.renderSection ? 
                     <div className="input-container">
-                    <InputElement logo="school" labelClass="label form-text" labelText="Institution*:" inputClass="institution" inputType="text" inputSize="14" function={this.props.changeinstitution}/>
+                    <InputElement logo="school" labelClass="label form-text" labelText="Institution*:" inputClass="institution" inputType="text" inputSize="14" function={this.props.changeInstitution}/>
                     <InputElement logo="history_edu" labelClass="label form-text" labelText="Course Chosen* :" inputClass="telephone" inputType="tel" inputSize="13" function={this.props.changeCourse} />
                     </div>
                  : null 

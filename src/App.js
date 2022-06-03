@@ -45,7 +45,7 @@ class App extends Component{
     this.changeEmail = this.changeEmail.bind(this)
     this.changeTelephone = this.changeTelephone.bind(this)
     this.changeSocialProfile = this.changeSocialProfile.bind(this)
-    this.changeinstitution = this.changeinstitution.bind(this)
+    this.changeInstitution = this.changeInstitution.bind(this)
     this.changeCourse = this.changeCourse.bind(this)
     this.changeYear = this.changeYear.bind(this)
     this.changeCompany = this.changeCompany.bind(this)
@@ -88,10 +88,11 @@ class App extends Component{
     })
   }
   //ed input
-  changeinstitution(event){
+  changeInstitution(event){
     this.setState({
       institution: this.capitalize(event.target.value)
     })
+    console.log('ji')
   }
   changeCourse(event){
     this.setState({
@@ -136,6 +137,7 @@ class App extends Component{
   checkInput(){ //checks if all required fields have been filled / no form validation is implemented yet
     const item=this.state
     if(item.name==undefined || item.gender==undefined || item.email==undefined || item.socialProfile==undefined || item.institution==undefined || item.course==undefined || item.year==undefined){
+      console.log(item.name,item.email,item.socialProfile,item.institution,item.course,item.year)
       return false
     }
     else{
