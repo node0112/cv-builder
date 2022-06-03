@@ -91,12 +91,14 @@ body{
 .form-text{
   color: #3476b0;
 }
-.section-header{
-  color: #3476b0;
+.section-header,.section-header-form{
   width: 100%;
   font-size: 32px;
-  border-bottom: 2px solid #3476b0;
   padding-bottom: 10px;
+}
+.section-header-form{
+  color: #3476b0;
+  border-bottom: 2px solid #3476b0;
 }
 .input-container{
   padding-top: 50px;
@@ -164,10 +166,7 @@ i{
   margin-left: 50px;
   margin-right: 40px;
 }
-.institution{
-
-}
-.section-header{
+.section-header,.section-header-form{
   display: flex;
   align-items: center;
 }
@@ -220,9 +219,10 @@ i{
   width: 70%;
   display: flex;
   flex-direction: column;
-  gap: 200px;
+  gap: 150px;
   padding: 5%;
   padding-top: 15%;
+  border-bottom-right-radius: 32px;
 }
 .header-text{
   margin-bottom: 5%;

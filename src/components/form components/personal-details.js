@@ -8,7 +8,7 @@ class PersonalDetails extends Component{
     render(){
         return(
             <div className="personal-details-section">
-                <div className="section-header label">1. Personal Details* <div className={this.props.filled}>  Please Fill All The Required Fields!</div></div>
+                <div className="section-header-form label">1. Personal Details* <div className={this.props.filled}>  Please Fill All The Required Fields!</div></div>
                 <div className="input-container">
                     <InputElement logo="account_circle" labelClass="label form-text" labelText="Full Name* :" inputClass="name" inputType="text" inputSize="13" function={this.props.nameChange} />
                     <div className="gender-selector label" onChange={event => this.props.changeGender(event,'gender')}>
@@ -23,7 +23,7 @@ class PersonalDetails extends Component{
                 <InputElement logo="phone_in_talk" labelClass="label form-text" labelText="Phone No. :" inputClass="telephone" inputType="tel" inputSize="13" function={this.props.changeTelephone}/>
                 </div>
                 <div className="input-container">
-                <InputElement logo="link" labelClass="label form-text" labelText="Active Social Profile* :" inputClass="social" inputType="text" inputSize="35" />
+                <InputElement logo="link" labelClass="label form-text" labelText="Active Social Profile* :" inputClass="social" inputType="text" inputSize="35" function={this.props.changeSocialProfile}/>
                 </div>
             </div>
         )

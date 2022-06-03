@@ -2,8 +2,8 @@ import logo from './logo.svg';
 import React, { Component } from 'react';
 import {Header,SubHeader} from './components/header';
 import Form from './components/form';
-import UserPreview from './userPreview';
-import PreviewDefault from './previewDefault';
+import UserPreview from './components/userPreview';
+import PreviewDefault from './components/previewDefault';
 
 
 
@@ -21,13 +21,14 @@ class App extends Component{
       course: undefined,
       year: undefined,
       //practical experience input
-      practicalExpereince: "No Previous Practical Experience",
+      practicalExperience: "No Previous Practical Experience",
+      experience: false,
       company: undefined,
       position: undefined,
       experienceYears: undefined,
       jobTasks: undefined,
       //----------miscellaneous
-      accentColor: "#3476b0",
+      accentColor: "#ED7E7E",
       cvTextColor: "#fec700",
       unfilled: "label hide",
       submit: false, //change to true if clicked and false if incomplete when clicked
@@ -36,7 +37,8 @@ class App extends Component{
       previewSelected: 'preview-container',
       preview: "menu-button preview label selected",
       makeMine: "menu-button make-yours label",
-      previewCV: <PreviewDefault textColor={this.cvTextColor} accentColor={this.accentColor}/>
+      rendered: false,
+      previewCV :undefined
     }
     this.changeGender = this.changeGender.bind(this)
     this.nameChange = this.nameChange.bind(this)
@@ -50,27 +52,29 @@ class App extends Component{
     this.changePosition = this.changePosition.bind(this)
     this.changeExperienceYears = this.changeExperienceYears.bind(this)
     this.changeJobTasks = this.changeJobTasks.bind(this)
+    this.capitalize =this.capitalize.bind(this)
     this.checkInput = this.checkInput.bind(this)
     this.submitClick = this.submitClick.bind(this)
     this.previewClick = this.previewClick.bind(this)
     this.makeMineClick = this.makeMineClick.bind(this)
     this.changeColor = this.changeColor.bind(this)
     this.changeTextColor = this.changeTextColor.bind(this)
+    this.checkRender = this.checkRender.bind(this)
   }
   //input functions here------>
   nameChange(event){
     this.setState({
-      name: event.target.value
+      name: this.capitalize(event.target.value)
     })
   }
   changeGender(event){
     this.setState({
-      gender: event.target.value
+      gender: this.capitalize(event.target.value)
     })
   }
   changeEmail(event){
     this.setState({
-      email: event.target.value
+      email: this.capitalize(event.target.value)
     })
   }
   changeTelephone(event){
@@ -80,18 +84,18 @@ class App extends Component{
   }
   changeSocialProfile(event){
     this.setState({
-      socialProfile: event.target.value
+      socialProfile: event.target.value.toLowerCase()
     })
   }
   //ed input
   changeinstitution(event){
     this.setState({
-      institution: event.target.value
+      institution: this.capitalize(event.target.value)
     })
   }
   changeCourse(event){
     this.setState({
-      course: event.target.value
+      course: this.capitalize(event.target.value)
     })
   }
   changeYear(event){
@@ -102,35 +106,43 @@ class App extends Component{
   //experience input
   changeCompany(event){
     this.setState({
-      company: event.target.value
+      company: this.capitalize(event.target.value)
     })
   }
   changePosition(event){
     this.setState({
-      position: event.target.value
+      position: this.capitalize(event.target.value)
     })
   }
   changeExperienceYears(event){
     this.setState({
-      experienceYears: event.target.value
+      experienceYears: this.capitalize(event.target.value)
     })
   }
   changeJobTasks(event){
     this.setState({
-      jobTasks: event.target.value
+      jobTasks: this.capitalize(event.target.value)
     })
   }
  //----------------------------
+ capitalize(input){  
+    var words = input.split(' ');  
+    var CapitalizedWords = [];  
+    words.forEach(element => {  
+        CapitalizedWords.push(element[0].toUpperCase() + element.slice(1, element.length));  
+    });  
+    return CapitalizedWords.join(' ');  
+  }
   checkInput(){
     const item=this.state
-    if(item.name==undefined || item.gender || item.email==undefined || item.socialProfile==undefined || item.institution==undefined || item.course==undefined || item.year==undefined){
-      console.log(item.name,item.email,item.socialProfile,item.institution,item.course,item.year,item.gender)
+    if(item.name==undefined || item.gender==undefined || item.email==undefined || item.socialProfile==undefined || item.institution==undefined || item.course==undefined || item.year==undefined){
       return false
     }
     else{
       if(this.state.company != undefined){
         this.setState({
-          practicalExpereince: "Here Are My Details About My Experience In The Field"
+          practicalExperience: "Here Are My Details About My Experience In The Field",
+          experience: true
         })
       }
       return true
@@ -143,17 +155,15 @@ class App extends Component{
           unfilled:  "label warning"
         })
         window.scrollTo(0, 0)
-        this.previewClick()
       }
-      else if(this.checkInput() == true){
-        this.setState({
-          formSubmitted: true
-        })
-        this.previewClick()
+      if(this.checkInput() == true){
+        this.setState({ formSubmitted: true }, () => {
+          this.previewClick()
+        }); 
       }
     }
   }
-  changeColor(event){
+  changeColor(event){ // both change colors are used to apply colors to the preview form
     this.setState({
       accentColor: event.target.value
     })
@@ -163,9 +173,13 @@ class App extends Component{
       cvTextColor: event.target.value
     })
   }
-  previewClick(){
-    if(this.checkInput==true && this.state.formSubmitted == true){
+  previewClick(){// used to switch tabs along with the makeMineCLick Function
+    if(this.checkInput() == true && this.state.formSubmitted == true){
       this.setState({
+        makeMineSelected: 'form-container hide',
+        previewSelected: 'preview-container',
+        preview: "menu-button preview label selected",
+        makeMine: "menu-button make-yours label ",
         previewCV: <UserPreview states={this.state} />
       })
     }
@@ -187,6 +201,17 @@ class App extends Component{
       makeMine: "menu-button make-yours label selected"
     })
   }
+  checkRender(){
+    if(this.state.rendered==false){
+      this.setState({
+        rendered: true,
+        previewCV: <PreviewDefault textColor={this.state.cvTextColor} accentColor={this.state.accentColor}/>
+      })
+    }
+  }
+  componentDidMount() { //renders default preview form on page load
+    window.addEventListener('load', this.checkRender());
+ }
   render(){
     return(
       <div className='container'>

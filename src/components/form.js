@@ -11,8 +11,8 @@ class Form extends Component{
         return(
             <div className="form">
                 <div className="form-content">
-                    <PersonalDetails nameChange={functions.nameChange} changeGender={functions.changeGender} changeEmail={functions.changeEmail} changeTelephone={functions.changeTelephone} filled={this.props.filled}/>
-                    <EducationDetails changeSchoolName={functions.changeSchoolName} changeCourse={functions.changeCourse} changeYear={functions.changeYear} experienceFunctions={this.props.functions} filled={this.props.filled} submitClick={functions.submitClick} accentColor={this.props.accentColor} textColor={this.props.textColor} changeTextColor={functions.changeTextColor} changeColor={functions.changeColor}/>
+                    <PersonalDetails nameChange={functions.nameChange} changeGender={functions.changeGender} changeEmail={functions.changeEmail} changeTelephone={functions.changeTelephone} filled={this.props.filled} changeSocialProfile={functions.changeSocialProfile}/>
+                    <EducationDetails changeinstitution={functions.changeinstitution} changeCourse={functions.changeCourse} changeYear={functions.changeYear} experienceFunctions={this.props.functions} filled={this.props.filled} submitClick={functions.submitClick} accentColor={this.props.accentColor} textColor={this.props.textColor} changeTextColor={functions.changeTextColor} changeColor={functions.changeColor}/>
                     <div className="form-footer">
                         <div className="footer-text label">Fields Marked With * Are Required To Be Filled </div>
                     </div>

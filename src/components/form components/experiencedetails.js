@@ -23,7 +23,7 @@ class ExperienceDetails extends Component{
         const functions=this.props.functions
         return(
             <div className="experience-details-section">
-                <div className="section-header label">3. Experience In The Field 
+                <div className="section-header-form label">3. Experience In The Field 
                 <i className={this.state.clicked} style={{marginLeft: "2%"}} onClick={this.addSection}>add_circle</i> 
                 </div>
                 {this.state.renderSection ? 
