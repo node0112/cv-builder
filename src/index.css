@@ -219,7 +219,7 @@ i{
   width: 70%;
   display: flex;
   flex-direction: column;
-  gap: 150px;
+  gap: 115px;
   padding: 5%;
   padding-top: 15%;
   border-bottom-right-radius: 32px;
@@ -229,7 +229,7 @@ i{
 }
 .label-text{
   font-size: 26px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   display: flex;
   gap: 10px;
 }
@@ -243,12 +243,14 @@ i{
   margin-left: 20px;
 }
 .footer-text{
-  border-top: 2px solid #292929;
-  margin-top: 10%;
   padding-top: 3%;
   width: 100%;
   font-size: 16px;
   color: #3476b0;
+}
+.footer-text-start{
+  margin-top: 15%;
+  border-top: 2px solid #292929;
 }
 ul{
   margin: 0;

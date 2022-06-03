@@ -39,7 +39,7 @@ class EducationDetails extends Component{
                  }
                  {this.state.renderSection ? 
                  <div className="form-options">
-                 <div className="section-header label">Form Options</div>
+                 <div className="section-header-form label">Form Options</div>
                  <div className="label color-picker" style={{fontSize:"20px"}}>CV Accent Color: <input type={"color"} value={this.props.accentColor} onChange={this.props.changeColor}/></div>
                  <div className="label color-picker" style={{fontSize:"20px"}}>CV Text Color: <input type={"color"} value={this.props.textColor} onChange={this.props.changeTextColor}/></div>
                  </div>

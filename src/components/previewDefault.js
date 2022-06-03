@@ -28,7 +28,7 @@ class PreviewDefault extends Component{
                         </div>
                         <div>
                         <div className="section-header label header-text" style={{...{color: this.props.accentColor},...{borderBottom: "2px solid"}}}>Practical Experience</div>
-                            <div className="label label-text"  style={{color: this.props.accentColor}}>Here Are My Details About My Experience In The Field:</div>
+                            <div className="label label-text"  style={{color: this.props.accentColor}}>Here Are The Details About My Experience In The Field:</div>
                             <div className="label label-text"  style={{color: this.props.accentColor}}>Company:<div style={{color: this.props.textColor}}>WeWork</div></div>
                             <div className="label label-text" style={{color: this.props.accentColor}}>Position: <div style={{color: this.props.textColor}}>Senior Full Stack Web Developer</div></div>
                             <div className="label label-text" style={{color: this.props.accentColor}}>Years On The Job: <div style={{color: this.props.textColor}}>5</div></div>

@@ -27,7 +27,7 @@ class  UserPreview extends Component{
                         <div className="label label-text" style={{color: values.accentColor}}>Year Taken: <div style={{color: values.cvTextColor}}>{values.year}</div></div>
                     </div>
                     <div>
-                        <div className="section-header label header-text" >Practical Experience</div>
+                    <div className="section-header label header-text" style={{...{color: values.accentColor},...{borderBottom: "2px solid"}}}>Practical Experience</div>
                         <div className="label label-text"  style={{color: values.accentColor}}>{values.practicalExperience}</div>
                         {values.experience ? 
                         <div>

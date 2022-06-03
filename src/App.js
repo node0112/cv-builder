@@ -133,7 +133,7 @@ class App extends Component{
     });  
     return CapitalizedWords.join(' ');  
   }
-  checkInput(){
+  checkInput(){ //checks if all required fields have been filled / no form validation is implemented yet
     const item=this.state
     if(item.name==undefined || item.gender==undefined || item.email==undefined || item.socialProfile==undefined || item.institution==undefined || item.course==undefined || item.year==undefined){
       return false
@@ -141,14 +141,14 @@ class App extends Component{
     else{
       if(this.state.company != undefined){
         this.setState({
-          practicalExperience: "Here Are My Details About My Experience In The Field",
+          practicalExperience: "Here Are The Details About My Experience In The Field",
           experience: true
         })
       }
       return true
     }
   }
-  submitClick(){
+  submitClick(){// checks form on submit and does suitable actions 
     if(this.state.submit == false){
       if(this.checkInput() == false){
         this.setState({
