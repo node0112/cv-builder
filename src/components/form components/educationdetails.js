@@ -51,7 +51,7 @@ class EducationDetails extends Component{
                  }
                  {this.state.renderSection ? 
                    <div className="form-buttons">
-                       <div className="submit-button label" onClick={this.props.submitClick}>Submit</div>
+                       <button type="submit" className="submit-button label" onClick={this.props.submitClick}>Submit</button>
                     </div>
                  : null 
                  }

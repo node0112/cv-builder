@@ -1,0 +1,121 @@
+import { useEffect, useState } from "react"
+import React from "react"
+
+
+
+const App= ()=>{
+    const [name,nameChange]=useState(undefined)
+    const[gender,changeGender]=useState(undefined)
+    const[email,changeEmail]=useState(undefined)
+    const[telephone,changeTelephone]=useState(undefined)
+    const[socialProfile,changeSocialProfile]=useState(undefined)
+    //education input 
+    const[institution,changeInstitution]=useState(undefined)
+    const[course,changeCourse]=useState(undefined)
+    const[year,changeYear]=useState(undefined)
+    //practical experience input
+    const[practicalExperience,setPracticalExperience]=useState("No Previous Practical Experience")
+    const[experience,setExperience]=useState(false)
+    const[company,changeCompany]=useState(undefined)
+    const[position,changePosition]=useState(undefined)
+    const[experienceYears,changeExperienceYears]=useState(undefined)
+    const[jobTasks,changeJobTasks]=useState(undefined)
+    //-------------miscellaneous--------
+    const[accentColor,setAccentColor]=useState(undefined)
+    const[cvTextColor,setCvTextColor]=useState(undefined)
+    const[unfilled,setUnfilled]=useState(undefined)
+    const[submit]=useState(false)
+    const[formSubmitted,setFormSubmitted]=useState(undefined)
+    const[makeMineSelected,setMakeMineSelected]=useState(undefined)
+    const[previewSelected,setPreviewSelected]=useState(undefined)
+    const[preview,setPreview]=useState(undefined)
+    const[makeMine,setMakeMine]=useState(undefined)
+    const[rendered,setRendered]=useState(undefined)
+    const[previewCv,setPreviewCv]=useState(false)
+
+    //<----functions here---->
+    const capitalize= (input)=>{  
+        var words = input.split(' ');  
+        var CapitalizedWords = [];  
+        words.forEach(element => {  
+            CapitalizedWords.push(element[0].toUpperCase() + element.slice(1, element.length));  
+        });  
+        return CapitalizedWords.join(' ');  
+    }
+    const checkInput=()=>{ //checks if all required fields have been filled / no form validation is implemented yet
+        if(name==undefined || gender==undefined || email==undefined || socialProfile==undefined || institution==undefined || course==undefined || year==undefined){
+          return false
+        }
+        else{
+          if(company != undefined){
+              setPracticalExperience("Here Are The Details About My Experience In The Field")
+              setExperience(true)
+          }
+          return true
+        }
+      }
+
+    const submitClick=()=>{// checks form on submit and does suitable actions 
+        if(submit == false){
+          if(checkInput() == false){
+            setUnfilled("label warning")
+            window.scrollTo(0, 0)
+          }
+          if(checkInput() == true){
+            setFormSubmitted(true), 
+            ()=>{previewClick()}
+          }
+        }
+      }
+    const changeColor=(event)=>{
+        setAccentColor(event.target.value)
+      }
+    const changeTextColor=(event)=>{
+        setCvTextColor(event.target.value)
+      }
+    const previewClick=()=>{// used to switch tabs along with the makeMineCLick Function
+        if(checkInput() == true && formSubmitted == true){
+
+            setMakeMineSelected('form-container hide')
+            setPreviewSelected('preview-container')
+            setPreview("menu-button preview label selected")
+            setMakeMine("menu-button make-yours label ")
+            setPreviewCv(<UserPreview states={this.state} />)
+        }
+        else{
+            setMakeMineSelected('form-container hide')
+            setPreviewSelected('preview-container')
+            setPreview("menu-button preview label selected")
+            setMakeMine("menu-button make-yours label ")
+            setPreviewCv(<PreviewDefault textColor={cvTextColor} accentColor={accentColor}/>)
+        }
+      }
+    const makeMineCLick=()=>{
+            setMakeMineSelected('form-container')
+            setPreviewSelected('preview-container hide')
+            setPreview("menu-button preview label ")
+            setMakeMine("menu-button make-yours label selected")
+    }
+    const checkRender=()=>{
+        if(rendered==false){
+            setRendered(true)
+            setPreviewCv(<PreviewDefault textColor={cvTextColor} accentColor={accentColor}/>)
+        }
+      }
+    useEffect(()=>{
+        this.checkRender()
+    },[])
+    //<----rendering here------>
+    return(
+        <div className='container'>
+          <Header headerTitle="Make My CV"/>
+          <SubHeader states={this.state} previewClick={this.previewClick} makeMineClick={this.makeMineClick} preview={preview} makeMine={makeMine}/>
+          <div className={previewSelected}>
+            {previewCV}
+          </div>
+          <div className={makeMineSelected}>
+            <Form accentColor={accentColor} textColor={cvTextColor} functions={this} filled={unfilled}/>
+          </div>
+        </div>
+      )
+}

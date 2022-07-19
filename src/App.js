@@ -92,7 +92,6 @@ class App extends Component{
     this.setState({
       institution: this.capitalize(event.target.value)
     })
-    console.log('ji')
   }
   changeCourse(event){
     this.setState({

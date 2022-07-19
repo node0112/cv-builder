@@ -265,10 +265,16 @@ li{
   list-style-type: none;
   display: flex;
 }
+#radio{
+  accent-color: #3476b0;
+}
 a{
   cursor: pointer;
   text-decoration: none;
 }
 .hide{
   display: none;
+}
+input:invalid {
+  border-color: red;
 }
