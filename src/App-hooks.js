@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react"
 import React from "react"
+import {Header,SubHeader} from './components/header';
+import Form from './components/form';
+import UserPreview from './components/userPreview';
+import PreviewDefault from './components/previewDefault';
 
 
 
-const App= ()=>{
+const App = ()=>{
     const [name,nameChange]=useState(undefined)
     const[gender,changeGender]=useState(undefined)
     const[email,changeEmail]=useState(undefined)
@@ -21,18 +25,21 @@ const App= ()=>{
     const[experienceYears,changeExperienceYears]=useState(undefined)
     const[jobTasks,changeJobTasks]=useState(undefined)
     //-------------miscellaneous--------
-    const[accentColor,setAccentColor]=useState(undefined)
-    const[cvTextColor,setCvTextColor]=useState(undefined)
-    const[unfilled,setUnfilled]=useState(undefined)
+    const[accentColor,setAccentColor]=useState("#ED7E7E")
+    const[cvTextColor,setCvTextColor]=useState("#fec700")
+    const[unfilled,setUnfilled]=useState("label hide")
     const[submit]=useState(false)
-    const[formSubmitted,setFormSubmitted]=useState(undefined)
-    const[makeMineSelected,setMakeMineSelected]=useState(undefined)
-    const[previewSelected,setPreviewSelected]=useState(undefined)
-    const[preview,setPreview]=useState(undefined)
-    const[makeMine,setMakeMine]=useState(undefined)
-    const[rendered,setRendered]=useState(undefined)
-    const[previewCv,setPreviewCv]=useState(false)
+    const[formSubmitted,setFormSubmitted]=useState(false)
+    const[makeMineSelected,setMakeMineSelected]=useState('form-container hide')
+    const[previewSelected,setPreviewSelected]=useState('preview-container')
+    const[preview,setPreview]=useState("menu-button preview label selected")
+    const[makeMine,setMakeMine]=useState("menu-button make-yours label")
+    const[rendered,setRendered]=useState(false)
+    const[previewCv,setPreviewCv]=useState(undefined)
+    const[scrollButton,setScrollButton]=useState(false)
 
+
+    
     //<----functions here---->
     const capitalize= (input)=>{  
         var words = input.split(' ');  
@@ -62,8 +69,8 @@ const App= ()=>{
             window.scrollTo(0, 0)
           }
           if(checkInput() == true){
-            setFormSubmitted(true), 
-            ()=>{previewClick()}
+            setFormSubmitted(true)
+            previewClick();
           }
         }
       }
@@ -80,7 +87,7 @@ const App= ()=>{
             setPreviewSelected('preview-container')
             setPreview("menu-button preview label selected")
             setMakeMine("menu-button make-yours label ")
-            setPreviewCv(<UserPreview states={this.state} />)
+            setPreviewCv(<UserPreview   />)
         }
         else{
             setMakeMineSelected('form-container hide')
@@ -90,7 +97,7 @@ const App= ()=>{
             setPreviewCv(<PreviewDefault textColor={cvTextColor} accentColor={accentColor}/>)
         }
       }
-    const makeMineCLick=()=>{
+    const makeMineClick=()=>{
             setMakeMineSelected('form-container')
             setPreviewSelected('preview-container hide')
             setPreview("menu-button preview label ")
@@ -102,20 +109,37 @@ const App= ()=>{
             setPreviewCv(<PreviewDefault textColor={cvTextColor} accentColor={accentColor}/>)
         }
       }
+    const checkPos=()=>{
+      window.addEventListener('scroll',()=>{
+        let nav=document.querySelector(".container")
+        let navHeight = nav.offsetTop;
+        let scrollHeight = window.scrollY;
+        if(scrollHeight>navHeight){
+          setScrollButton(true)
+        }
+        else{
+          setScrollButton(false)
+        }
+      });
+    }
     useEffect(()=>{
-        this.checkRender()
+        checkRender()
     },[])
     //<----rendering here------>
     return(
         <div className='container'>
           <Header headerTitle="Make My CV"/>
-          <SubHeader states={this.state} previewClick={this.previewClick} makeMineClick={this.makeMineClick} preview={preview} makeMine={makeMine}/>
+          <SubHeader name={name} gender={gender} email={email} telephone={telephone} socialProfile={socialProfile} institution={institution} course={course} year={year} practicalExperience={practicalExperience} experience={experience} 
+          company={company} position={position} experienceYears={experienceYears} jobTasks={jobTasks} accentColor={accentColor} cvTextColor={cvTextColor} previewClick={previewClick} makeMineClick={makeMineClick} preview={preview} makeMine={makeMine}/>
           <div className={previewSelected}>
-            {previewCV}
+            {previewCv}
           </div>
           <div className={makeMineSelected}>
-            <Form accentColor={accentColor} textColor={cvTextColor} functions={this} filled={unfilled}/>
+            <Form setaccentColor={setAccentColor} changeColor={changeColor} textColor={cvTextColor} namechange={nameChange} functions={[{changeGender},{changeEmail},{changeSocialProfile},{changeTextColor}]} filled={unfilled}/>
           </div>
+          {scrollButton? <button className="scroll-up">ꜛ</button> : null}
         </div>
       )
 }
+
+export default App

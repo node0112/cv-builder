@@ -7,7 +7,7 @@ class  UserPreview extends Component{
     }
 
     render(){
-        const values=this.props.states
+        const values=this
         return(
             <div className="preview-form">
             <div className="preview-content" style={{color: values.cvTextColor}}>

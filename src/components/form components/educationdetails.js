@@ -1,4 +1,3 @@
-import { click } from "@testing-library/user-event/dist/click";
 import React, { Component } from "react";
 import ExperienceDetails from "./experiencedetails";
 import InputElement from "./inputElement";
